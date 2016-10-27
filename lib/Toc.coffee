@@ -136,7 +136,7 @@ class Toc
     for own i, item of @list
       row = []
       for tab in [depthFrom..item.depth] when tab > depthFrom
-        row.push "\t"
+        row.push " "
       if @options.orderedList is 1
         row.push ++indicesOfDepth[item.depth-1] + ". "
         indicesOfDepth = indicesOfDepth.map((value, index) -> if index < item.depth then value else 0)
@@ -202,7 +202,7 @@ class Toc
   ___createLink: (name) ->
     hash = new String name
     hash = hash.toLowerCase().replace /\s/g, "-"
-    hash = hash.replace /[^a-z0-9\u4e00-\u9fa5äüö\-]/g, ""
+    hash = hash.replace /[^a-z0-9äüö\-]/g, "-"
     if hash.indexOf("--") > -1
       hash = hash.replace /(-)+/g, "-"
     if name.indexOf(":-") > -1
